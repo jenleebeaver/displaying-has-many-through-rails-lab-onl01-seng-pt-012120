@@ -1,17 +1,18 @@
 
 class PatientsController < ApplicationController
-before_action :set_patient, only: [:show]
+before_action :set_patient!, only: [:show]
 
     def index
-        @patients = Patient.all
+        @patients = Patient.all 
     end
 
     def show
+        set_patient!
     end
 
     private
-    def set_patient
-        @patient = Patient.find(params[:id])
+    def set_patient!
+        @patient = Patient.find_by(id: params[:id])
     end
 
     def patient_params
